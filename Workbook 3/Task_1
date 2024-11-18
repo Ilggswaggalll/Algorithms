@@ -111,13 +111,12 @@ def addit(a, b):
 a = input("Первое большое число: ")
 b = input("Второе большое число: ")
 start = datetime.datetime.now()
-"""print("Сложение: ", end='')
+print("Сложение: ", end='')
 m = addit(a, b)
 for i in m:
     print(i, end='')
-print()"""
+print()
 print("Вычитание: ", end='')
-print(int(a) - int(b))
 m = subtraction(a, b)
 for i in m:
     print(i, end='')
