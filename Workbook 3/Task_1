@@ -8,6 +8,7 @@ def srav(a, b):
             return 1
     return 0
 
+
 # вычитание в столбик подготовленных
 def subt(m1, m2, a):
     m3 = [0] * len(m1)
