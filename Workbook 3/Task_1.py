@@ -1,7 +1,7 @@
 import datetime
 
 
-# сравнению чисел
+# сравнение одинаковых по длине чисел (поразрядно)
 def srav(a, b):
     for i in range(len(a)):
         if a[i] < b[i]:
@@ -9,7 +9,7 @@ def srav(a, b):
     return 0
 
 
-# вычитание в столбик подготовленных
+# вычитание в столбик подготовленных чисел
 def subt(m1, m2, a):
     m3 = [0] * len(m1)
     m = []
@@ -38,10 +38,12 @@ def subt(m1, m2, a):
         m.append(m3[i])
     if m == [0]:
         return m[1:]
+    if all(i == 0 for i in m):
+        return [0]
     return m
 
 
-# вычитание чисел в столбик
+# подготовка чисел для вычитания в столбик и нахождение результата функции subt
 def subtraction(a, b):
         if len(a) != len(b):
             if len(a) > len(b):
@@ -70,7 +72,8 @@ def subtraction(a, b):
             else:
                 m = subt(m2, m1, 1)
             return m
-        
+
+
 # сложение в столбик
 def addit(a, b):
     if len(a) != len(b):
@@ -107,19 +110,54 @@ def addit(a, b):
         m3.append(v_ume)
     return m3[::-1]
 
+
 # проверка
 a = input("Первое большое число: ")
 b = input("Второе большое число: ")
 start = datetime.datetime.now()
 print("Сложение: ", end='')
-m = addit(a, b)
-for i in m:
-    print(i, end='')
-print()
+if a[0] == '-' and b[0] == '-':
+    m = addit(a[1:], b[1:])
+    print('-', end='')
+    for i in m:
+        print(i, end='')
+    print()
+elif a[0] == '-' and b[0] != '-':
+    m = subtraction(b, a[1:])
+    for i in m:
+        print(i, end='')
+    print()
+elif a[0] != '-' and b[0] == '-':
+    m = subtraction(a, b[1:])
+    for i in m:
+        print(i, end='')
+    print()
+else:
+    m = addit(a, b)
+    for i in m:
+        print(i, end='')
+    print()
 print("Вычитание: ", end='')
-m = subtraction(a, b)
-for i in m:
-    print(i, end='')
-print()
+if a[0] == '-' and b[0] == '-':
+    m = subtraction(b[1:], a[1:])
+    for i in m:
+        print(i, end='')
+    print()
+elif a[0] == '-' and b[0] != '-':
+    m = addit(a[1:], b)
+    print('-', end='')
+    for i in m:
+        print(i, end='')
+    print()
+elif a[0] != '-' and b[0] == '-':
+    m = addit(a, b[1:])
+    for i in m:
+        print(i, end='')
+    print()
+else:
+    m = subtraction(a, b)
+    for i in m:
+        print(i, end='')
+    print()
 finish = datetime.datetime.now()
-print(finish - start)
+print(finish.microsecond - start.microsecond)
