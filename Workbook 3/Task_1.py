@@ -4,9 +4,9 @@ import datetime
 # сравнение одинаковых по длине чисел (поразрядно)
 def srav(a, b):
     for i in range(len(a)):
-        if a[i] < b[i]:
-            return 1
-    return 0
+        if a[i] > b[i]:
+            return 0
+    return 1
 
 
 # вычитание в столбик подготовленных чисел
@@ -24,7 +24,6 @@ def subt(m1, m2, a):
                 else:
                     m1[j] -= 1
                     break
-            
             m1[i] += 10
             m3[i] = m1[i] - m2[i]
         else:
@@ -67,11 +66,14 @@ def subtraction(a, b):
         else:
             m1 = [int(i) for i in a]
             m2 = [int(i) for i in b]
-            if not srav(a, b):
-                m = subt(m1, m2, 0)
-            else:
-                m = subt(m2, m1, 1)
-            return m
+            for i in range(len(m1)):
+                if m1[i] > m2[i]:
+                    m = subt(m1, m2, 0)
+                    break
+                elif m1[i] < m2[i]:
+                    m = subt(m2, m1, 1)
+                    break
+        return m
 
 
 # сложение в столбик
@@ -160,4 +162,4 @@ else:
         print(i, end='')
     print()
 finish = datetime.datetime.now()
-print(finish.microsecond - start.microsecond)
+print("Микросекунд прошло:", finish.microsecond - start.microsecond)
