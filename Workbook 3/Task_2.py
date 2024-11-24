@@ -1,6 +1,3 @@
-import datetime
-
-
 def addit_n_perenos(a, b):
     addit = []
     transfer = []
