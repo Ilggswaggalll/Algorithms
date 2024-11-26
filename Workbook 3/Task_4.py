@@ -1,3 +1,6 @@
+import datetime
+
+
 def mul(a, b):
     num_1 = a[::-1]
     num_2 = b[::-1]
@@ -23,8 +26,10 @@ def mul(a, b):
     return int(''.join(map(str, results[::-1])))
 
 
-
 # тест
 a = input("Первое большое число: ")
 b = input("Второе большое число: ")
+start = datetime.datetime.now()
 print(mul(a, b))
+finish = datetime.datetime.now()
+print("Микросекунд прошло:", finish.microsecond - start.microsecond)
