@@ -23,6 +23,7 @@ def mul(a, b):
     return int(''.join(map(str, results[::-1])))
 
 
+
 # тест
 a = input("Первое большое число: ")
 b = input("Второе большое число: ")
