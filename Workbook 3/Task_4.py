@@ -1,35 +1,46 @@
-import datetime
+n1 = [int(elem) for elem in input("Первое большое число: ")[::-1]]
+n2 = [int(elem) for elem in input("Второе большое число: ")[::-1]]
 
 
-def mul(a, b):
-    num_1 = a[::-1]
-    num_2 = b[::-1]
+def simple_sum(n1, n2):
+    if len(n1) < len(n2):
+        n1 = [0] * (len(n2) - len(n1)) + n1
+    else:
+        n2 = [0] * (len(n1) - len(n2)) + n2
 
-    results = [0] * (len(num_1) + len(num_2))
+    shift = 0
+    res = []
 
-    for i in range(len(num_1)):
-        for j in range(len(num_2)):
-            results[i + j] += int(num_1[i]) * int(num_2[j])
-            print(results[i + j], i, j)
+    for i in range(len(n1) - 1, -1, -1):
+        res.append((n1[i] + n2[i] + shift) % 10)
+        shift = (n1[i] + n2[i] + shift) // 10
 
-    carry = 0
-    for i in range(len(results)):
-        results[i] += carry
-        print(results[i], end=' ')
-        carry = results[i] // 10
-        results[i] %= 10
-        print(carry, results[i])
-
-    while len(results) > 1 and results[-1] == 0:
-        results.pop()
-
-    return int(''.join(map(str, results[::-1])))
+    if shift:
+        res.append(shift)
+    return res[::-1]
 
 
-# тест
-a = input("Первое большое число: ")
-b = input("Второе большое число: ")
-start = datetime.datetime.now()
-print(mul(a, b))
-finish = datetime.datetime.now()
-print("Микросекунд прошло:", finish.microsecond - start.microsecond)
+def simple_mul(n1, n2):
+    if len(n1) < len(n2):
+        n1.extend([0] * (len(n2) - len(n1)))
+    else:
+        n2.extend([0] * (len(n1) - len(n2)))
+
+    res = [0] * (len(n1) + len(n2))
+    shift = 0
+
+    for j in range(len(n2)):
+        buffer = [0] * (len(n1) + len(n2))
+        for i in range(len(n1)):
+            buffer[i] = (n1[i] * n2[j] + shift) % 10
+            shift = (n1[i] * n2[j] + shift) // 10
+        if shift:
+            buffer[i + 1] += shift
+            shift = 0
+        res = simple_sum(buffer[::-1] + [0] * j, res)
+    return res
+
+finish_res = "".join(map(str, simple_mul(n1, n2)))
+while finish_res[0] == "0":
+    finish_res = finish_res[1:]
+print(finish_res)
