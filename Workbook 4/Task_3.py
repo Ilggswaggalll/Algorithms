@@ -12,7 +12,7 @@ def bisection_method(func, left, right, epsilon=1e-6):
 
 
 def f(x):
-    return math.exp(x - 1) - x ** 3 - x
+    return 1 - x + math.sin(x) - math.log(1 + x) 
 
 
 left = 0
