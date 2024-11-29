@@ -44,7 +44,6 @@ def fast_addit(a, b):
             s = s[:-1]
     return s[::-1]
     
-
 a = input("Первое большое число: ")
 b = input("Второе большое число: ")
 print(fast_addit(a, b))

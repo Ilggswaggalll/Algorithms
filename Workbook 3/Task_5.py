@@ -1,5 +1,4 @@
 import time
-import random
 
 
 def simple_sum(n1, n2):
