@@ -1,4 +1,4 @@
-def selection_sort(arr):
+def selection(arr):
     n = len(arr)
     for i in range(n):
         min_idx = i
@@ -10,4 +10,4 @@ def selection_sort(arr):
 
 
 arr = [45, 55, 20, 17, 6, 70, 5, 1]
-print(selection_sort(arr))
+print(selection(arr))
