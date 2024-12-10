@@ -75,30 +75,30 @@ def qsort(s):
 
 def duration(s1, s2):
     start1 = time.time()
-    m1 = bubble_sort(s1)
+    m1 = bubble_sort(s1.copy())
     end1 = time.time()
     start11 = time.time()
-    m1 = bubble_sort(s2)
+    m1 = bubble_sort(s2.copy())
     end11 = time.time()
     print("Сортировка bubble_1:", '{:.20f}'.format(end1 - start1), 'секунд')
     print("Сортировка bubble_2:", end11 - start11, 'секунд')
     print()
     
     start2 = time.time()
-    m2 = shaker(s1)
+    m2 = shaker(s1.copy())
     end2 = time.time()
     start22 = time.time()
-    m2 = shaker(s2)
+    m2 = shaker(s2.copy())
     end22 = time.time()
     print("Сортировка shaker_1:", '{:.20f}'.format(end2 - start2), 'секунд')
     print("Сортировка shaker_2:", end22 - start22, 'секунд')
     print()
 
     start3 = time.time()
-    m3 = insertion(s1)
+    m3 = insertion(s1.copy())
     end3 = time.time()
     start33 = time.time()
-    m3 = insertion(s2)
+    m3 = insertion(s2.copy())
     end33 = time.time()
     print("Сортировка insertion_1:", '{:.20f}'.format(end3 - start3), 'секунд')
     print("Сортировка insertion_2:", end33 - start33, 'секунд')
@@ -106,10 +106,10 @@ def duration(s1, s2):
 
 
     start4 = time.time()
-    m4 = selection(s1)
+    m4 = selection(s1.copy())
     end4 = time.time()
     start44 = time.time()
-    m4 = selection(s2)
+    m4 = selection(s2.copy())
     end44 = time.time()
     print("Сортировка selection_1:", '{:.20f}'.format(end4 - start4), 'секунд')
     print("Сортировка selection_2:", end44 - start44, 'секунд')
@@ -117,27 +117,27 @@ def duration(s1, s2):
 
 
     start5 = time.time()
-    m5 = shell(s1)
+    m5 = shell(s1.copy())
     end5 = time.time()
     start55 = time.time()
-    m5 = shell(s2)
+    m5 = shell(s2.copy())
     end55 = time.time()
     print("Сортировка shell_1:", '{:.20f}'.format(end5 - start5), 'секунд')
     print("Сортировка shell_2:", end55 - start55, 'секунд')
     print()
 
     start6 = time.time()
-    m6 = qsort(s1)
+    m6 = qsort(s1.copy())
     end6 = time.time()
     start66 = time.time()
-    m6 = qsort(s2)
+    m6 = qsort(s2.copy())
     end66 = time.time()
     print("Сортировка qsort_1:", '{:.20f}'.format(end6 - start6), 'секунд')
     print("Сортировка qsort_2:", end66 - start66, 'секунд')
     print()
 
 
-arr_1 = [45, 55, 20, 17, 6, 70, 5, 1, 9, 9, 34]
+arr_1 = [45, 55, 20, 17, 6, 70, 5, 1, 9, 9, 34, 67, 44, 33, 22]
 arr_2 = []
 for i in range(5000):
     arr_2.append(random.randint(1, 1000))

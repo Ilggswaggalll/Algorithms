@@ -13,34 +13,36 @@ def insertion(arr):
     return arr
 
 
-def binary_search(sub_arr, key, start, end):
-    while start < end:
-        mid = (start + end) // 2
-        if sub_arr[mid] < key:
-            start = mid + 1
-        else:
-            end = mid
-    return start
-
-
-def binary_insertion(arr):
+def insertion_sort(arr):
     for i in range(1, len(arr)):
-        key = arr[i]
-        pos = binary_search(arr, key, 0, i)
-        arr = arr[:pos] + [key] + arr[pos:i] + arr[i + 1:]
+      temp = arr[i]
+      pos = binary_search(arr, temp, 0, i) + 1
+      for k in range(i, pos, -1):
+         arr[k] = arr[k - 1]
+      arr[pos] = temp
     return arr
 
+def binary_search(arr, key, start, end):
+   if end - start <= 1:
+      if key < arr[start]:
+         return start - 1
+      else:
+         return start
+   mid = (start + end)//2
+   if arr[mid] < key:
+      return binary_search(arr, key, mid, end)
+   elif arr[mid] > key:
+      return binary_search(arr, key, start, mid)
+   else:
+      return mid
 
-array = [random.randint(1, 1000) for _ in range(5000)]
-arr_test = [45, 55, 20, 17, 6, 70, 5, 1, 9, 9, 34]
-array_1 = array.copy()
-array_2 = array.copy()
 
+array = [random.randint(1, 2000) for _ in range(9000)]
+arr_test = [45, 55, 20, 17, 6, 70, 5, 1, 9, 9]
 start_1 = time.time()
-insertion(array_1)
+insertion(array.copy())
 print("Insertion Sort", '{:.20f}'.format(time.time() - start_1), 'seconds')
 print()
-
 start_2 = time.time()
-print(binary_insertion(arr_test), '- test for binary_insertion')
+insertion_sort(array.copy())
 print("Binary Insertion Sort", '{:.20f}'.format(time.time() - start_2), 'seconds')

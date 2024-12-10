@@ -1,4 +1,5 @@
 import time
+import random
 
 
 def simple_sum(n1, n2):
@@ -110,9 +111,14 @@ def karatsuba(x: list, y: list):
         z0,
     )
 
-a = input("Первое большое число: ")
-b = input("Второе большое число: ")
-
+#a = input("Первое большое число: ")
+#b = input("Второе большое число: ")
+a = ''
+b = ''
+for i in range(4000):
+    a += str(random.randint(1, 9))
+for i in range(4000):
+    b += str(random.randint(1, 9))
 n1 = [int(i) for i in a]
 n2 = [int(i) for i in b]
 
