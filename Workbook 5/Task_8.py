@@ -37,8 +37,8 @@ def binary_search(arr, key, start, end):
       return mid
 
 
-array = [random.randint(1, 2000) for _ in range(9000)]
-arr_test = [45, 55, 20, 17, 6, 70, 5, 1, 9, 9]
+array = [random.randint(1, 2000) for _ in range(5000)]
+#arr_test = [45, 55, 20, 17, 6, 70, 5, 1, 9, 9]
 start_1 = time.time()
 insertion(array.copy())
 print("Insertion Sort", '{:.20f}'.format(time.time() - start_1), 'seconds')
