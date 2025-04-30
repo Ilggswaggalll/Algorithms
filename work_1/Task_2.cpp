@@ -56,9 +56,27 @@ void printList(Node* head) {
     std::cout << std::endl;
 }
 
+void deleteList(Node* head) {
+    while (head != nullptr) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+}
+
 int main() {
     // Пример списка 3 -> 5 -> 2 -> 8 -> 1 -> nullptr
-    Node* head = new Node{3, new Node{5, new Node{2, new Node{8, new Node{1, nullptr}}}}};
+    Node* head = new Node;
+    head->data = 3;
+    head->next = new Node;
+    head->next->data = 5;
+    head->next->next = new Node;
+    head->next->next->data = 2;
+    head->next->next->next = new Node;
+    head->next->next->next->data = 8;
+    head->next->next->next->next = new Node;
+    head->next->next->next->next->data = 1;
+    head->next->next->next->next->next = nullptr;
 
     // Считываем значение X
     int x;
@@ -77,7 +95,11 @@ int main() {
     std::cout << "Список со значениями больше или равными " << x << ": ";
     printList(greaterList);
 
-    // Освобождение памяти (не забудьте освободить узлы списка)
+    // Освобождение памяти
+    deleteList(head); // Освобождаем исходный список
+    deleteList(lessList); // Освобождаем список с меньшими значениями
+    deleteList(greaterList); // Освобождаем список с большими или равными значениями
 
     return 0;
 }
+
